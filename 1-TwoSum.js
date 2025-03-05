@@ -19,3 +19,28 @@
         Output: [0,1]
 
 */
+
+var twoSum = function(nums, target) {
+    // Store the given nums of array to a map into a key-value pair, each representing:
+        // actual number: index (indicies)
+        // So later by figuring out the difference, we can check if it exists and pull it out from the map
+    let indicies = {};
+
+    // Updating the map...using for loop
+    for (let i = 0; i < nums.length; i++) {
+        indicies[nums[i]] = i;
+    }
+
+    // Loop through the nums and find the difference from the target
+    for (let i = 0; i < nums.length; i++) {
+        let difference = target - nums[i];
+        
+        // If the difference does exist in the map...
+            // Check if it is not undefined
+            // Check so that the the value of the indicies[difference] is not the same value as the current iteration (no duplicates)
+        if (indicies[difference] != undefined && indicies[difference] != i) {
+            // Return indicies if it's true!
+            return [i, indicies[difference]]
+        }
+    }
+}
